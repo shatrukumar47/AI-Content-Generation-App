@@ -22,6 +22,8 @@ const Translation = () => {
   const textAreaRef = useRef();
   const [loading, setLoading] = useState(false);
 
+  const translatedBoxRef = useRef();
+
   //toast
   const toast = useToast();
 
@@ -30,6 +32,7 @@ const Translation = () => {
   }, []);
 
   const handleTranslate = () => {
+    translatedBoxRef.current.focus();
     if (article) {
       setLoading(true);
       axios
@@ -68,15 +71,15 @@ const Translation = () => {
     <Box bg={"#343541"}>
       <Container
         maxW={"8xl"}
-        style={{ minHeight: "calc(100vh - 145px)", overflow: "hidden" }}
+        style={{ minHeight: "calc(100vh - 105px)", overflow: "hidden" }}
         color={"white"}
       >
-        <Heading marginTop={"30px"} textAlign={"center"} color={"#565869"}>
+        <Heading marginTop={"20px"} textAlign={"center"} color={"#565869"}>
           Language / Translation
         </Heading>
         <HStack
           justifyContent={{ base: "center", md: "center", lg: "flex-end" }}
-          marginTop={"20px"}
+          marginTop={"10px"}
         >
           <HStack spacing={"10px"}>
             <Select
@@ -105,10 +108,8 @@ const Translation = () => {
         <Stack
           direction={{ base: "column", md: "row", lg: "row" }}
           justifyContent={"space-between"}
-          border={"2px solid green"}
-          marginTop={"30px"}
-          padding={"10px"}
-          marginBottom={"20px"}
+          marginTop={"10px"}
+          padding={{base:"0px", md:"0px", lg:"10px"}}
           borderRadius={"10px"}
           boxShadow={
             "rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px"
@@ -116,8 +117,8 @@ const Translation = () => {
         >
           <VStack width={{ base: "100%", md: "50%", lg: "50%" }}>
             <Textarea
-              placeholder="Put your content here..."
-              height={"600px"}
+              placeholder="Put your text here..."
+              height={"calc(100vh - 251.3px)"}
               bg={"black"}
               paddingTop={"20px"}
               value={article}
@@ -127,24 +128,24 @@ const Translation = () => {
           </VStack>
           <Box
             width={{ base: "100%", md: "50%", lg: "50%" }}
-            padding={"20px"}
+            padding={"15px"}
             overflowY="auto"
-            height={"600px"}
+            height={"calc(100vh - 251.3px)"}
             className="custom-scrollbar"
             textAlign={"justify"}
           >
             {loading ? (
               <Stack
                 justifyContent={"center"}
-                height={"500px"}
+                height={"calc(100vh - 251.3px)"}
                 alignItems={"center"}
               >
                 <Loading w={100} h={100} />
               </Stack>
             ) : (
-              <Box>
+              <Box ref={translatedBoxRef} tabIndex={0}>
                 {!translatedMsg && (
-                  <Text color={"#565869"}>Your summary comes here...</Text>
+                  <Text color={"#565869"}>Your translated text comes here...</Text>
                 )}
                 {translatedMsg && <Text>{translatedMsg}</Text>}
               </Box>

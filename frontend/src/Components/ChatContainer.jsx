@@ -1,17 +1,16 @@
 import { Box } from "@chakra-ui/react";
-import React, { useEffect, useRef } from "react";
 import UserMessage from "./UserMessage";
 import AIResponse from "./AIResponse";
+import { useEffect, useRef } from "react";
 
 const ChatContainer = ({ data }) => {
-  const chatContainerRef = useRef(null);
+  const containerRef = useRef();
 
-  useEffect(() => {
-    // Scroll to the bottom of the chat container when new messages are added
-    if (chatContainerRef.current) {
-      chatContainerRef.current.scrollTop = chatContainerRef.current.scrollHeight;
+  useEffect(()=>{
+    if(containerRef.current){
+      containerRef.current.scrollTop = containerRef.current.scrollHeight;
     }
-  }, [data]);
+  },[data])
 
 
   return (
@@ -23,8 +22,8 @@ const ChatContainer = ({ data }) => {
       width={{ base: "100%", md: "90%", lg: "70%" }}
       margin={"auto"}
       justifyContent={"space-between"}
-      padding={"20px"}
-      color={"white"}
+      padding={{ base: "0px", md: "20px", lg: "20px" }}
+      ref={containerRef}
     >
       {data?.map((item, index) => {
         if (item?.sender === "user") {

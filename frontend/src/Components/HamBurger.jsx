@@ -13,7 +13,7 @@ import {
 } from "@chakra-ui/react";
 import React from "react";
 import logo from "../Assets/robotGif.gif";
-import {Link} from "react-router-dom"
+import { Link } from "react-router-dom";
 
 const HamBurger = ({ isOpen, onClose }) => {
   return (
@@ -48,15 +48,36 @@ const HamBurger = ({ isOpen, onClose }) => {
             >
               <HStack spacing={"20px"}>
                 <StarIcon />
-                <Link to="/">Chat</Link>
+                <Link
+                  to="/"
+                  onClick={() => {
+                    onClose();
+                  }}
+                >
+                  Chat
+                </Link>
               </HStack>
               <HStack spacing={"20px"}>
                 <StarIcon />
-                <Link to="/summarization">Summarization</Link>
+                <Link
+                  to="/summarization"
+                  onClick={() => {
+                    onClose();
+                  }}
+                >
+                  Summarization
+                </Link>
               </HStack>
               <HStack spacing={"20px"}>
                 <StarIcon />
-                <Link to="/translation">Translation</Link>
+                <Link
+                  to="/translation"
+                  onClick={() => {
+                    onClose();
+                  }}
+                >
+                  Translation
+                </Link>
               </HStack>
             </VStack>
           </DrawerBody>

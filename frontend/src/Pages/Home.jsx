@@ -40,7 +40,6 @@ const Home = () => {
   };
 
   const fetchAPI = async (query) => {
-    console.log(query);
     setLoading(true);
     try {
       const res = await axios.post("https://genchat-hwpt.onrender.com/chat", {
@@ -52,7 +51,6 @@ const Home = () => {
         sender: "ai",
       };
       setLoading(false);
-      console.log(res);
       setData((prev) => [...prev, aiRes]);
     } catch (error) {
       setLoading(false);
@@ -69,6 +67,13 @@ const Home = () => {
       }
     }
   };
+
+  const handleSendIcon = ()=>{
+    if (message.trim() !== "") {
+      handleUserMessage();
+      setMessage("");
+    }
+  }
 
   const handlePeom = async () => {
     const predefinedMessage = "Can you please write a poem for me?";
@@ -158,9 +163,9 @@ const Home = () => {
           <ChatContainer data={data} />
         )}
 
-        <Stack width={"100%"} color={"white"}>
+        {/* <Stack width={"100%"} color={"white"}>
           Hello
-        </Stack>
+        </Stack> */}
 
         {/* Input Field */}
         <Box
@@ -200,7 +205,7 @@ const Home = () => {
               onKeyPress={handleKeyPress}
             />
             <InputRightElement width="4.5rem">
-              <Icon as={FaTelegramPlane} color="gray.300" />
+              <Icon as={FaTelegramPlane} color="gray.300" cursor={"pointer"} onClick={handleSendIcon} />
             </InputRightElement>
           </InputGroup>
         </Box>
