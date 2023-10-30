@@ -5,7 +5,6 @@ import {
   Container,
   Heading,
   HStack,
-  Select,
   Stack,
   Text,
   Textarea,
@@ -14,6 +13,8 @@ import {
 } from "@chakra-ui/react";
 import Loading from "../Components/Loading";
 import axios from "axios";
+import Languages from "../Components/Languages";
+import translationBg from "../Assets/translation-bg.jpg";
 
 const Translation = () => {
   const [article, setArticle] = useState("");
@@ -30,6 +31,11 @@ const Translation = () => {
   useEffect(() => {
     textAreaRef.current.focus();
   }, []);
+
+  //handleChange for Languages component
+  const handleChange = (e) => {
+    setLanguage(e.target.value);
+  };
 
   const handleTranslate = () => {
     translatedBoxRef.current.focus();
@@ -68,48 +74,36 @@ const Translation = () => {
   };
 
   return (
-    <Box bg={"#343541"}>
+    <Box bgImage={`url(${translationBg})`} bgSize={"cover"}>
       <Container
         maxW={"8xl"}
         style={{ minHeight: "calc(100vh - 105px)", overflow: "hidden" }}
         color={"white"}
       >
-        <Heading marginTop={"20px"} textAlign={"center"} color={"#565869"}>
+        <Heading marginTop={"20px"} textAlign={"center"} color={"white"}>
           Language / Translation
         </Heading>
         <HStack
           justifyContent={{ base: "center", md: "center", lg: "flex-end" }}
           marginTop={"10px"}
         >
-          <HStack spacing={"10px"}>
-            <Select
-              // bg="tomato"
-              borderColor="tomato"
-              color="tomato"
-              value={language}
-              onChange={(e) => setLanguage(e.target.value)}
-            >
-              <option value="English">English</option>
-              <option value="Hindi">Hindi</option>
-              <option value="Spanish">Spanish</option>
-              <option value="Italian">Italian</option>
-              <option value="Japanese">Japanese</option>
-            </Select>
+          <Stack direction={{base:"column", md:"row", lg:"row"}} spacing={"10px"}>
+            <Languages value={language} handleChange={handleChange} />
             <Button
               colorScheme="red"
-              width={"180px"}
+              width={"200px"}
               onClick={handleTranslate}
               isDisabled={loading}
             >
               Translate
             </Button>
-          </HStack>
+          </Stack>
         </HStack>
         <Stack
           direction={{ base: "column", md: "row", lg: "row" }}
           justifyContent={"space-between"}
           marginTop={"10px"}
-          padding={{base:"0px", md:"0px", lg:"10px"}}
+          padding={{ base: "0px", md: "0px", lg: "10px" }}
           borderRadius={"10px"}
           boxShadow={
             "rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px"
@@ -117,7 +111,8 @@ const Translation = () => {
         >
           <VStack width={{ base: "100%", md: "50%", lg: "50%" }}>
             <Textarea
-              placeholder="Put your text here..."
+              className="custom-scrollbar"
+              placeholder="Put your text here... Provide less content for better result."
               height={"calc(100vh - 251.3px)"}
               bg={"black"}
               paddingTop={"20px"}
@@ -133,6 +128,9 @@ const Translation = () => {
             height={"calc(100vh - 251.3px)"}
             className="custom-scrollbar"
             textAlign={"justify"}
+            bg={"#343541"}
+            borderRadius={"10px"}
+            border={"1px solid white"}
           >
             {loading ? (
               <Stack
@@ -145,9 +143,15 @@ const Translation = () => {
             ) : (
               <Box ref={translatedBoxRef} tabIndex={0}>
                 {!translatedMsg && (
-                  <Text color={"#565869"}>Your translated text comes here...</Text>
+                  <Text color={"#565869"}>
+                    Your translated text comes here...
+                  </Text>
                 )}
-                {translatedMsg && <Text>{translatedMsg}</Text>}
+                {translatedMsg && (
+                  <Box >
+                    <Text>{translatedMsg}</Text>
+                  </Box>
+                )}
               </Box>
             )}
           </Box>

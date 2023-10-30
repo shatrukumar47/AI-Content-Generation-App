@@ -98,6 +98,7 @@ const Summarization = () => {
         >
           <VStack width={{ base: "100%", md: "50%", lg: "50%" }}>
             <Textarea
+              className="custom-scrollbar"
               placeholder="Put your article/paragrapgh here..."
               height={"calc(100vh - 251.3px)"}
               bg={"black"}

@@ -16,9 +16,9 @@ const Navbar = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const navigate = useNavigate();
 
-  const handleLogo = ()=>{
-    navigate("/")
-  }
+  const handleLogo = () => {
+    navigate("/");
+  };
 
   return (
     <Box bg={"#000000"}>
@@ -49,7 +49,7 @@ const Navbar = () => {
           </HStack>
 
           <HStack
-            spacing={"20px"}
+            spacing={{base:"0px", md:"10px", lg:"20px"}}
             color={"white"}
             fontWeight={"bold"}
             letterSpacing={"1px"}
@@ -59,6 +59,7 @@ const Navbar = () => {
             <Link to="/">Chat</Link>
             <Link to="/summarization">Summarization</Link>
             <Link to="/translation">Translation</Link>
+            <Link to="/sentiment-analysis">Sentiment-Analysis</Link>
           </HStack>
         </HStack>
 

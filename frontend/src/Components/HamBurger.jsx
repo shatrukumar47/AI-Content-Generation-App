@@ -79,6 +79,17 @@ const HamBurger = ({ isOpen, onClose }) => {
                   Translation
                 </Link>
               </HStack>
+              <HStack spacing={"20px"}>
+                <StarIcon />
+                <Link
+                  to="/sentiment-analysis"
+                  onClick={() => {
+                    onClose();
+                  }}
+                >
+                  Sentiment-Analysis
+                </Link>
+              </HStack>
             </VStack>
           </DrawerBody>
         </DrawerContent>

@@ -68,12 +68,12 @@ const Home = () => {
     }
   };
 
-  const handleSendIcon = ()=>{
+  const handleSendIcon = () => {
     if (message.trim() !== "") {
       handleUserMessage();
       setMessage("");
     }
-  }
+  };
 
   const handlePeom = async () => {
     const predefinedMessage = "Can you please write a poem for me?";
@@ -115,7 +115,11 @@ const Home = () => {
               justifyContent={"space-between"}
               padding={"20px"}
             >
-              <Flex justifyContent={"center"} alignItems={"center"} height={{base:"", md:"250px", lg:"300px"}}>
+              <Flex
+                justifyContent={"center"}
+                alignItems={"center"}
+                height={{ base: "", md: "250px", lg: "300px" }}
+              >
                 <Heading color={"#565869"} fontSize={"50px"}>
                   Gen / Chat
                 </Heading>
@@ -205,7 +209,12 @@ const Home = () => {
               onKeyPress={handleKeyPress}
             />
             <InputRightElement width="4.5rem">
-              <Icon as={FaTelegramPlane} color="gray.300" cursor={"pointer"} onClick={handleSendIcon} />
+              <Icon
+                as={FaTelegramPlane}
+                color="gray.300"
+                cursor={"pointer"}
+                onClick={handleSendIcon}
+              />
             </InputRightElement>
           </InputGroup>
         </Box>
