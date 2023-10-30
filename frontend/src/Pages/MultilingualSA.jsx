@@ -46,7 +46,7 @@ const MultilingualSA = () => {
       };
       try {
         const response = await axios.post(
-          "http://localhost:8080/sentiment-analysis",
+          "https://genchat-hwpt.onrender.com/sentiment-analysis",
           obj
         );
         console.log(response?.data?.msg);
