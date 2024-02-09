@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import {
   Box,
   Container,
@@ -49,7 +49,7 @@ const Navbar = () => {
           </HStack>
 
           <HStack
-            spacing={{base:"0px", md:"10px", lg:"20px"}}
+            spacing={{ base: "0px", md: "10px", lg: "20px" }}
             color={"white"}
             fontWeight={"bold"}
             letterSpacing={"1px"}

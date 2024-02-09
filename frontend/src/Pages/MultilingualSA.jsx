@@ -67,7 +67,7 @@ const MultilingualSA = () => {
   };
 
   return (
-    <Box bg={"#343541"} bgImage={`url(${analysisBg})`} bgSize={"cover"}>
+    <Box bg={"#343541"} bgSize={"cover"}>
       <Container
         maxW={"8xl"}
         style={{ minHeight: "calc(100vh - 105px)", overflow: "hidden" }}
